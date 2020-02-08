@@ -33,7 +33,9 @@ export default function App({userId}) {
     chatManager
       .connect({
         onAddedToRoom: room => {
-          setRoom([...roomsRef.current, room])
+          console.log("onAddedToRoom Hook");
+          roomsRef.current = [...roomsRef.current, room];
+          setRoom([...roomsRef.current]);
         },
       })
       .then(currentUser => {
@@ -86,31 +88,31 @@ export default function App({userId}) {
     setRoom(temp);
   };
 
-  const createNewRoom = (newroom) => {
-    user.subscribeToRoomMultipart({
-      roomId: newroom.id,
-      hooks: {
-        onMessage: message => {
-          messagesRef.current = [...messagesRef.current, message];
-          setMessages(messagesRef.current);
-        },
-        onUserJoined: user => {
-          //try to put the user into messages lists as braodcast message
-          messagesRef.current = [...messagesRef.current, { user: user, status: "join" }];
-          setMessages(messagesRef.current);
-        },
-        onUserLeft: user => {
-          messagesRef.current = [...messagesRef.current, { user: user, status: "leav" }];
-          setMessages(messagesRef.current);
-        },
-      },
-      messageLimit: 20,
-    })
-    const temp = [newroom, ...rooms];
-    roomsRef.current = temp;
-    setRoom(temp);
-    changesubscribedRoom(newroom);
-  };
+  // const createNewRoom = (newroom) => {
+  //   user.subscribeToRoomMultipart({
+  //     roomId: newroom.id,
+  //     hooks: {
+  //       onMessage: message => {
+  //         messagesRef.current = [...messagesRef.current, message];
+  //         setMessages(messagesRef.current);
+  //       },
+  //       onUserJoined: user => {
+  //         //try to put the user into messages lists as braodcast message
+  //         messagesRef.current = [...messagesRef.current, { user: user, status: "join" }];
+  //         setMessages(messagesRef.current);
+  //       },
+  //       onUserLeft: user => {
+  //         messagesRef.current = [...messagesRef.current, { user: user, status: "leav" }];
+  //         setMessages(messagesRef.current);
+  //       },
+  //     },
+  //     messageLimit: 20,
+  //   })
+  //   const temp = [newroom, ...rooms];
+  //   roomsRef.current = temp;
+  //   setRoom(temp);
+  //   changesubscribedRoom(newroom);
+  // };
 
   //change utility 
   const changesubscribedRoom = (newroom) => {
@@ -131,7 +133,7 @@ export default function App({userId}) {
         messages: messages,
         setSubscribedRoom: contextSetRoom,
         leaveSubscribedRoom: leaveRoom,
-        createNewRoom: createNewRoom,
+        // createNewRoom: createNewRoom,
       }}>
         <GiHamburgerMenu className="hamburgerMenu" onClick={handleHamburgerClick} />
         {showRoomList ?

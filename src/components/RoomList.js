@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Room from './Room';
-import { FaPlus } from "react-icons/fa";
+import { GiExitDoor } from "react-icons/gi";
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -51,7 +51,7 @@ const RoomList = ({ rooms }) => {
     return (
         <>
             <div className="roomlist">
-                <h2>Rooms<FaPlus className="plus-btn" onClick={handlePlusClick} /></h2>
+                <h2>Rooms<GiExitDoor className="join-btn" onClick={handlePlusClick} /></h2>
                 <h3>public rooms</h3>
                 <ul>
                     {rooms.map(room => {

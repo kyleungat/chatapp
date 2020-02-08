@@ -83,10 +83,11 @@ input {
 /* End of Hamburger Icon*/
 
 /* RoomLists */
-.plus-btn{
+.join-btn{
   margin-left: 10px;
   margin-top: -5px;
   cursor: pointer;
+  color: #155ab9;
 }
 
 .roomlist-container{
@@ -97,7 +98,7 @@ input {
 }
 
 .roomlist {
-  flex: 90vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
 }
@@ -117,7 +118,7 @@ input {
   margin: 0;
   padding: 0;
   height: 30%;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .roomlist ul li {
@@ -297,7 +298,7 @@ input {
 
 .chatroom-content{
   position: relative;
-  overflow: scroll;
+  overflow-y: auto;
   height: 100%;
 }
 

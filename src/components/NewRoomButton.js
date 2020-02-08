@@ -28,7 +28,7 @@ export default function NewRoomButton() {
             private: form.privateCheckbox.checked,
             addUserIds: form.privateCheckbox.checked?[form.users.value]:[],
         }).then(room => {
-            subscribedRoom.createNewRoom(room);
+            // subscribedRoom.createNewRoom(room);
         })
             .catch(err => {
             })

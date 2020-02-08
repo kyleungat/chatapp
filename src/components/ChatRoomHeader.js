@@ -16,17 +16,20 @@ export default function ChatRoomHeader() {
                 <Popover.Title as="h3">Information</Popover.Title>
                 <Popover.Content>
                     <div>
-                        Created at: {subscribedRoom.room.createdAt.slice(0, 10)}
+                        <strong>Room Id:</strong> {subscribedRoom.room.id}
                     </div>
                     <div>
-                        Created by: {subscribedRoom.room.createdByUserId}
+                        <strong>Created at:</strong> {subscribedRoom.room.createdAt.slice(0, 10)}
                     </div>
                     <div>
-                        {subscribedRoom.room.isPrivate ? "Private" : "Public"}
+                        <strong>Created by:</strong> {subscribedRoom.room.createdByUserId}
                     </div>
                     <div>
-                        Users:
-                    <ul>
+                        <strong>{subscribedRoom.room.isPrivate ? "Private" : "Public"}</strong>
+                    </div>
+                    <div>
+                        <strong>Users:</strong>
+                        <ul>
                             {subscribedRoom.room.users.map(user => (
                                 <li key={user.id}>{user.name}</li>
                             ))}
@@ -47,35 +50,35 @@ export default function ChatRoomHeader() {
         const handleConfirm = () => {
             setShow(false);
             subscribedRoom.user.leaveRoom({ roomId: subscribedRoom.room.id })
-            .then(room => {
-                subscribedRoom.leaveSubscribedRoom(room);
-              })
-              .catch(err => {
-              });
+                .then(room => {
+                    subscribedRoom.leaveSubscribedRoom(room);
+                })
+                .catch(err => {
+                });
         };
 
         return (
             <>
-            <div className="chatroom-header">
-                <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
-                    <h1>{subscribedRoom.room.name}</h1>
-                </OverlayTrigger>
-                <span onClick={handleClick}><FaRunning /></span>
-            </div>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Leave Room</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Are you sure to leave this room?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleConfirm}>
-                        Confirm
+                <div className="chatroom-header">
+                    <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+                        <h1>{subscribedRoom.room.name}</h1>
+                    </OverlayTrigger>
+                    <span onClick={handleClick}><FaRunning /></span>
+                </div>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Leave Room</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Are you sure to leave this room?</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" onClick={handleConfirm}>
+                            Confirm
             </Button>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Cancel
+                        <Button variant="secondary" onClick={handleClose}>
+                            Cancel
             </Button>
-                </Modal.Footer>
-            </Modal>
+                    </Modal.Footer>
+                </Modal>
             </>
         );
     }
