@@ -1,0 +1,419 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Global */
+h1,h2,h3,h4 {
+  margin: 0;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+h1{
+  font-size: 4rem;
+}
+
+h2{
+  font-size: 3rem;
+}
+
+h3{
+  font-size: 2rem;
+}
+
+h4{
+  font-size: 1rem;
+}
+
+input {
+  outline: none;
+}
+/* End of Global */
+
+/* App */
+.App {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr 80px;
+  grid-template-areas: 
+    "roomlist-container roomlist-container chat chat chat chat"
+    "roomlist-container roomlist-container chat chat chat chat"
+    "roomlist-container roomlist-container chat chat chat chat"
+    "roomlist-container roomlist-container chat chat chat chat"
+    "roomlist-container roomlist-container input input input input"
+  ;
+}
+
+@media screen and (max-width: 576px) {
+  .App {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows:  80px 1fr 80px;
+    grid-template-areas: 
+      "chat"
+      "chat"
+      "input"
+    ;
+  }
+}
+/* End of App */
+
+/* Hamburger Icon*/
+.hamburgerMenu{
+  display: none;
+}
+
+@media screen and (max-width: 576px) {
+  .hamburgerMenu{
+    position: fixed;
+    display: block;
+    top: 18px;
+    left: 20px;
+    height: 50px;
+    width: 50px;
+    z-index: 100;
+    color: #ffffff;
+  }
+}
+
+/* End of Hamburger Icon*/
+
+/* RoomLists */
+.plus-btn{
+  margin-left: 10px;
+  margin-top: -5px;
+  cursor: pointer;
+}
+
+.roomlist-container{
+  grid-area: roomlist-container;
+  background-color: #66a6ff;
+  display: flex;
+  flex-direction: column;
+}
+
+.roomlist {
+  flex: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.roomlist h2 {
+  text-align: center;
+  font-weight: 700;
+  padding: 0.5em 0;
+}
+
+.roomlist h3 {
+  padding: 0.5em 1em;
+}
+
+.roomlist ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 30%;
+  overflow: scroll;
+}
+
+.roomlist ul li {
+  font-family: 'Cabin', sans-serif;
+  background-color: #66a6ff;
+  color: #ffffff;
+  margin: 0px;
+  padding: 0.5em 1.5em;
+  font-size: 1.2em;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: all 0.3s ease;
+}
+
+.roomlist li:hover, .roomlist li.active{
+  background-color: #155ab9;
+  color: #dddddd;
+}
+
+@media screen and (max-width: 576px) {
+  .roomlist-container{
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    width: 100vw;
+    height: calc(100vh - 80px);
+    z-index: 1000;
+  }
+
+  .roomlist-container-active{
+    left: 0;
+    transition: all 0.3s ease;
+  }
+}
+/* End of RoomLists */
+
+/* newroom-butotn */
+.newroom-btn-container{
+  background: #66a6ff;
+  flex: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newroom-btn{
+  background: #2b77e2;
+  color: #ffffff;
+  display: inline-block;
+  width: 60%;
+  padding: 1em 0.5em;
+  margin: 0.5em 0;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  transition: padding 0.3s ease;
+  position: relative;
+  outline: none;
+}
+
+.newroom-btn::after{
+  content: "+";
+  font-weight: 700;
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.newroom-btn:hover{
+  padding-left: 0;
+}
+
+.newroom-btn:focus{
+  outline: none;
+}
+
+.newroom-btn:hover::after{
+  opacity: 100%;
+}
+/* End of newroom-butotn */
+
+/* new room form */
+.newroom-form h2{
+  text-align: center;
+}
+
+.newroom-form .inputfield{
+  margin: 5px;
+}
+
+.inputfield input{
+  margin: 0 1em;
+}
+
+.inputfield-btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.inputfield-btn-container button{
+  margin: 1em;
+  display: inline-block;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.inputfield-btn-container button:focus{
+  outline: none;
+}
+
+.inputfield-btn-container button[type="submit"]{
+  border: 2px solid #66a6ff;
+  color: #66a6ff;
+}
+
+.inputfield-btn-container button[type="submit"]:hover,
+.inputfield-btn-container button[type="submit"]:active
+{
+  background: #66a6ff;
+  color: #ffffff;
+}
+
+.inputfield-btn-container button[type="reset"]{
+  border: 2px solid #757272;
+  color: #757272;
+}
+
+.inputfield-btn-container button[type="reset"]:hover,
+.inputfield-btn-container button[type="reset"]:active
+{
+  background: #757272;
+  color: #ffffff;
+}
+
+
+/* End of new room form */
+
+
+/* chatroom */
+.chatroom-container{
+  position: relative;
+  padding: 0;
+  grid-area: chat;
+  overflow: hidden;
+  background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.chatroom-header{
+  background-color: #2b77e2;
+  color: #ffffff;
+  padding: 0 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 96px;
+}
+
+.chatroom-header h1{
+  cursor: pointer;
+  padding: 0.5em 2em;
+}
+
+.chatroom-header span{
+  cursor: pointer;
+  font-size: 3em;
+}
+
+.chatroom-content{
+  position: relative;
+  overflow: scroll;
+  height: 100%;
+}
+
+.splash-message{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  padding: 20px;
+  background: rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.message {
+  margin: 0 2em;
+  padding: 0.5em;
+}
+
+.message h3{
+  font-family: 'Caveat', cursive;
+}
+
+.message p{
+  font-size: 1.3em;
+  padding: 0 0.5em;
+}
+
+.broadcast {
+  margin: 0 2em;
+  padding: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.broadcast span {
+  background-color: #dedede;
+  border-radius: 20px;
+  padding: 0.5em 3em;
+}
+
+
+.message-others{
+  text-align: left;
+}
+
+.message-self {
+  text-align: right;
+}
+
+.message-username{
+  margin: 0 0 5px 0;
+  padding: 0;
+}
+
+.message-text{
+  display: inline-block;
+  margin: 0;
+  padding: 5px;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #56b6f7;
+}
+
+
+@media screen and (max-width: 576px) {
+  .chatroom-header h1{
+    margin-left: 60px;
+    padding: 0.5em 0;
+    font-size: 1.5em;
+  }
+
+  .chatroom-header span{
+    font-size: 2em;
+  }
+
+  .splash-message{
+    width: 80vw;
+    padding: 0.5em 1em;
+    font-size: 1.5rem;
+  }
+}
+/* End of chatroom */
+
+
+.inputBox{
+  grid-area: input;
+  background-image: linear-gradient(10deg, #d4fc79 0%, #96e6a1 100%);
+}
+
+.inputBox form{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.inputBox input[type="text"] {
+  outline: none;
+  display: inline-block;
+  width: 100%;
+  height: 70px;
+  border: 2px solid black;
+  border-radius: 20px;
+  font-size: 2em;
+  padding: 0 10px;
+}
+
+.App .alert-primary{
+  background-color: #e0e6ee;
+  position: fixed;
+  transform: translateX(-50%);
+  bottom: 50px;
+  left: 50%;
+  padding: 20px;
+}
